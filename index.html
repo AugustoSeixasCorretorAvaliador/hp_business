@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>HERO.IA | Governança Comercial para Imobiliárias</title>
+	<meta name="description" content="HERO.IA: infraestrutura de decisão assistida no WhatsApp para imobiliárias. Follow-up, PDFs, disparos estratégicos e controle humano total.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root{
+			--bg:#030712;
+			--card:#0b1224;
+			--accent:#4fd1c5;
+			--muted:#9fb3c8;
+			--stroke:#18223a;
+			--text:#e7ecf5;
+			--shine:linear-gradient(135deg,#0ea5e9,#6366f1,#22d3ee);
+			--shadow:0 18px 45px rgba(0,0,0,0.28);
+		}
+		*{box-sizing:border-box;}
+		body{
+			margin:0;
+			font-family:'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+			background:radial-gradient(circle at 20% 20%, rgba(79,209,197,0.08), transparent 25%),
+								 radial-gradient(circle at 80% 0%, rgba(99,102,241,0.12), transparent 30%),
+								 var(--bg);
+			color:var(--text);
+			line-height:1.65;
+		}
+		a{color:inherit;}
+		header{
+			position:sticky;
+			top:0;
+			z-index:50;
+			backdrop-filter:blur(10px);
+			background:rgba(3,7,18,0.7);
+			border-bottom:1px solid var(--stroke);
+		}
+		nav{
+			max-width:1200px;
+			margin:auto;
+			padding:16px 20px;
+			display:flex;
+			align-items:center;
+			justify-content:space-between;
+			gap:16px;
+		}
+		.logo{
+			font-weight:700;
+			letter-spacing:0.06em;
+			display:flex;
+			align-items:center;
+			gap:10px;
+		}
+		.logo img{height:36px;width:auto;border:0;margin:0;}
+		.nav-links{display:flex;gap:14px;font-weight:500;color:var(--muted);}
+		.nav-links a{text-decoration:none;padding:8px 10px;border-radius:8px;transition:0.25s;}
+		.nav-links a:hover{color:var(--text);background:rgba(79,209,197,0.08);}
+		.btn{
+			display:inline-flex;
+			align-items:center;
+			justify-content:center;
+			gap:8px;
+			padding:14px 20px;
+			border-radius:12px;
+			background:var(--shine);
+			color:#031018;
+			text-decoration:none;
+			font-weight:700;
+			box-shadow:var(--shadow);
+			transition:transform 0.2s ease, box-shadow 0.2s ease;
+			border:1px solid rgba(255,255,255,0.1);
+		}
+		.btn:hover{transform:translateY(-2px);box-shadow:0 20px 50px rgba(0,0,0,0.35);}
+		section{padding:80px 20px;max-width:1200px;margin:auto;}
+		h1{font-size:56px;margin:0 0 16px;line-height:1.05;}
+		h2{font-size:34px;margin:0 0 18px;}
+		h3{margin:0 0 10px;font-size:20px;color:#9ad8ff;}
+		p{color:var(--muted);margin:0 0 14px;font-size:17px;}
+		.hero{
+			padding:110px 20px 90px;
+			display:grid;
+			grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+			gap:30px;
+			align-items:start;
+		}
+		.hero-card,.hero .panel{height:100%;display:flex;flex-direction:column;}
+		.hero-card{
+			background:linear-gradient(145deg,rgba(20,33,64,0.9),rgba(14,23,45,0.85));
+			border:1px solid var(--stroke);
+			border-radius:18px;
+			padding:28px;
+			box-shadow:var(--shadow);
+		}
+		.pill{
+			display:inline-flex;
+			align-items:center;
+			gap:8px;
+			padding:8px 12px;
+			border-radius:999px;
+			background:rgba(79,209,197,0.12);
+			color:#a5f3fc;
+			font-weight:600;
+			margin-bottom:14px;
+			border:1px solid rgba(79,209,197,0.25);
+		}
+		.hero-grid{
+			display:grid;
+			grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+			gap:12px;
+			margin-top:18px;
+		}
+		.stat{
+			background:rgba(255,255,255,0.02);
+			border:1px solid var(--stroke);
+			border-radius:12px;
+			padding:14px;
+			font-weight:600;
+			color:var(--text);
+		}
+		.stat span{display:block;color:var(--muted);font-weight:500;font-size:14px;}
+		.panel{
+			background:var(--card);
+			border:1px solid var(--stroke);
+			border-radius:16px;
+			padding:24px;
+			box-shadow:var(--shadow);
+		}
+		.grid{
+			display:grid;
+			grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+			gap:18px;
+		}
+		.card{
+			background:rgba(255,255,255,0.02);
+			border:1px solid var(--stroke);
+			border-radius:14px;
+			padding:18px;
+			height:100%;
+		}
+		.list{display:grid;gap:10px;margin:14px 0;}
+		.list-item{
+			display:flex;
+			gap:10px;
+			align-items:flex-start;
+			color:var(--muted);
+		}
+		.list-item strong{color:var(--text);}
+		.hero .panel .list{gap:20px;}
+		.badge{display:inline-flex;padding:6px 10px;border-radius:8px;background:rgba(148,163,184,0.14);color:var(--text);font-weight:600;}
+		.media{
+			display:grid;
+			grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+			gap:20px;
+			align-items:stretch;
+		}
+		.video-wrapper{
+			position:relative;
+			padding-top:56.25%;
+			border-radius:16px;
+			overflow:hidden;
+			border:1px solid var(--stroke);
+			box-shadow:var(--shadow);
+			background:radial-gradient(circle at 30% 30%, rgba(79,209,197,0.12), transparent 40%), #0f172a;
+		}
+		.video-wrapper iframe{
+			position:absolute;
+			top:0;left:0;width:100%;height:100%;border:0;
+		}
+		.video-fallback{
+			position:absolute;
+			inset:0;
+			display:flex;
+			flex-direction:column;
+			align-items:center;
+			justify-content:center;
+			gap:10px;
+			background:linear-gradient(145deg, rgba(15,23,42,0.9), rgba(3,7,18,0.92));
+			color:var(--text);
+			text-align:center;
+			padding:16px;
+			opacity:0;
+			visibility:hidden;
+			pointer-events:none;
+		}
+		.video-fallback a{
+			text-decoration:none;
+			color:var(--bg);
+			background:var(--shine);
+			padding:10px 16px;
+			border-radius:10px;
+			font-weight:700;
+			box-shadow:var(--shadow);
+		}
+		.video-wrapper.error iframe{display:none;}
+		.video-wrapper.error .video-fallback{opacity:1;visibility:visible;pointer-events:auto;}
+		.pdf-card{
+			display:flex;
+			flex-direction:column;
+			gap:12px;
+			justify-content:space-between;
+		}
+		.pdf-card .btn{width:100%;}
+		.gallery{
+			display:grid;
+			grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+			gap:14px;
+		}
+		.gallery figure{
+			margin:0;
+			border:1px solid var(--stroke);
+			border-radius:12px;
+			overflow:hidden;
+			background:rgba(255,255,255,0.02);
+		}
+		.gallery img{display:block;width:100%;height:auto;margin:0;border:0;}
+		.gallery figcaption{padding:10px 12px;color:var(--muted);font-size:14px;}
+		.lightbox{
+			position:fixed;
+			inset:0;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			background:rgba(0,0,0,0.75);
+			opacity:0;
+			visibility:hidden;
+			transition:opacity 0.2s ease, visibility 0.2s ease;
+			z-index:120;
+			padding:18px;
+		}
+		.lightbox.active{opacity:1;visibility:visible;}
+		.lightbox img{
+			max-width:90vw;
+			max-height:90vh;
+			border-radius:12px;
+			box-shadow:0 25px 60px rgba(0,0,0,0.45);
+			border:1px solid var(--stroke);
+			background:#0b1224;
+		}
+		.lightbox .video-shell{position:relative;width:90vw;max-width:980px;aspect-ratio:16/9;border-radius:14px;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,0.45);border:1px solid var(--stroke);background:#0b1224;}
+		.lightbox .video-shell iframe{width:100%;height:100%;border:0;}
+		.lightbox-close{
+			position:absolute;
+			top:14px;
+			right:18px;
+			background:rgba(0,0,0,0.6);
+			color:#fff;
+			border:1px solid rgba(255,255,255,0.18);
+			border-radius:50%;
+			width:38px;
+			height:38px;
+			font-size:22px;
+			cursor:pointer;
+			backdrop-filter:blur(4px);
+		}
+		.lightbox-close:hover{background:rgba(255,255,255,0.14);}
+		.cta{
+			text-align:center;
+			background:linear-gradient(145deg,rgba(18,43,84,0.9),rgba(9,18,36,0.9));
+			border:1px solid var(--stroke);
+			border-radius:18px;
+			padding:32px;
+			box-shadow:var(--shadow);
+		}
+		footer{
+			background:#070c1a;
+			border-top:1px solid var(--stroke);
+			padding:26px 20px;
+			color:var(--muted);
+			text-align:center;
+			font-size:14px;
+		}
+		@media (max-width:720px){
+			h1{font-size:36px;}
+			h2{font-size:26px;}
+			nav{flex-direction:column;align-items:flex-start;}
+			.nav-links{flex-wrap:wrap;}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="logo">
+				<img src="img/logo.jpg" alt="Logo HERO.IA">
+				<span>HERO.IA</span>
+			</div>
+			<div class="nav-links">
+				<a href="#hero">Visao</a>
+				<a href="#fluxo">Fluxo e robustez</a>
+				<a href="#funcoes">Funcionalidades</a>
+				<a href="#midia">Video & PDF</a>
+				<a href="#slides">Slides</a>
+			</div>
+			<a class="btn" href="https://wa.me/5521985653880?text=Quero%20agendar%20uma%20demonstra%C3%A7%C3%A3o%20do%20HERO.IA">Agendar demo</a>
+		</nav>
+	</header>
+
+	<main>
+		<section id="hero" class="hero">
+			<div class="hero-card">
+				<div class="pill">Sales Enablement Infrastructure para Imobiliárias</div>
+				<h1>HERO.IA: governança comercial, follow-up e disparos estratégicos dentro do WhatsApp.</h1>
+				<p>Infraestrutura de decisão assistida que mantém o corretor no comando. O HERO.IA organiza informação, sugere respostas, dispara mensagens estratégicas e protege a reputação da imobiliária com base única de verdade.</p>
+				<div class="hero-grid">
+					<div class="stat">99%<span>controle humano e compliance implícita</span></div>
+					<div class="stat">+6 funções<span>resposta, follow-up, PDFs, transcrição, disparador, JSON central</span></div>
+					<div class="stat">24x7<span>infra em nuvem + API oficial OpenAI</span></div>
+				</div>
+				<div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:12px;">
+					<a class="btn" href="https://hero.ia.br" target="_blank" rel="noopener">Acessar plataforma</a>
+					<a class="btn" href="#midia">Ver video e proposta</a>
+				</div>
+			</div>
+			<div class="panel">
+				<img src="img/heroia.jpg" alt="HERO.IA em operação" style="display:block;max-width:380px;margin:0 auto 16px;">
+				<h3>O que o HERO.IA resolve</h3>
+				<div class="list">
+					<div class="list-item"><span class="badge">1</span><div><strong>Padroniza discurso</strong> com botões estratégicos no WhatsApp Web e rascunhos validados.</div></div>
+					<div class="list-item"><span class="badge">2</span><div><strong>Organiza materiais</strong> em JSON central e links profissionais de PDFs (books, tabelas, disponibilidades).</div></div>
+					<div class="list-item"><span class="badge">3</span><div><strong>Follow-up estruturado</strong> com diagnóstico de jornada, objeções e próxima ação.</div></div>
+					<div class="list-item"><span class="badge">4</span><div><strong>Disparo estratégico</strong> com temporização randômica, variação e ritmo humano.</div></div>
+					<div class="list-item"><span class="badge">5</span><div><strong>Compliance e registro</strong>: tudo documentado, sem respostas cegas nem riscos reputacionais.</div></div>
+				</div>
+			</div>
+		</section>
+
+		<section id="fluxo">
+			<h2>Fluxo, robustez e plataformas envolvidas</h2>
+			<p>Middleware estratégico entre WhatsApp Web e OpenAI, com camada de controle humano e base JSON única. Toda interação passa por botões de decisão dentro do WhatsApp, mantendo governança, versionamento e rastreabilidade.</p>
+			<div class="grid" style="align-items:stretch;">
+				<div class="card">
+					<h3>Arquitetura assistiva</h3>
+					<p>Extensão compatível com Google Chrome integra a API oficial da OpenAI direto na janela da conversa, exibindo botões operacionais e mantendo rascunhos sob aprovação humana.</p>
+					<div class="list">
+						<div class="list-item"><span class="badge">A</span><div>Fonte da verdade em JSON central elimina PDFs soltos e tabelas conflitantes.</div></div>
+						<div class="list-item"><span class="badge">B</span><div>Infra em nuvem 24x7 com segurança, governança e logs.</div></div>
+						<div class="list-item"><span class="badge">C</span><div>Camada de decisão humana impede automação cega e protege a marca.</div></div>
+					</div>
+				</div>
+				<div class="card">
+					<h3>Resultados para imobiliárias</h3>
+					<div class="list">
+						<div class="list-item"><span class="badge">+</span><div>Reduz perda de lead e acelera follow-up estruturado.</div></div>
+						<div class="list-item"><span class="badge">+</span><div>Padroniza discurso comercial e evita erro de tabela.</div></div>
+						<div class="list-item"><span class="badge">+</span><div>Protege reputação e cria memória comercial organizada.</div></div>
+						<div class="list-item"><span class="badge">+</span><div>Controle humano garante compliance implícita em cada envio.</div></div>
+					</div>
+				</div>
+				<div class="card" style="display:flex;flex-direction:column;gap:12px;">
+					<h3>Visão do fluxo</h3>
+					<p>O operador mantém o comando: IA sugere, humano ajusta e envia. PDFs e tabelas vêm do repositório único; disparos seguem ritmo humano para campanhas segmentadas.</p>
+					<img src="img/arquitetura.jpg" alt="Arquitetura HERO.IA">
+				</div>
+			</div>
+		</section>
+
+		<section id="funcoes">
+			<h2>6 funcionalidades estratégicas</h2>
+			<div class="grid">
+				<div class="card">
+					<h3>Gerar Resposta</h3>
+					<p>Rascunhos contextualizados com base na última mensagem e histórico. IA sugere, corretor valida.</p>
+				</div>
+				<div class="card">
+					<h3>Copiloto / Follow-up</h3>
+					<p>Diagnóstico automático do lead: perfil, objeções, estágio da jornada e próxima ação recomendada.</p>
+				</div>
+				<div class="card">
+					<h3>Enviar PDF</h3>
+					<p>Organiza books, tabelas, disponibilidade e repasse em links profissionais sempre atualizados.</p>
+				</div>
+				<div class="card">
+					<h3>Transcrever Áudio</h3>
+					<p>Transforma voz em texto estruturado, confirma entendimento e deixa registro claro da negociação.</p>
+				</div>
+				<div class="card">
+					<h3>Disparador Estratégico</h3>
+					<p>Campanhas segmentadas com temporização randômica, variação de texto e ritmo humano.</p>
+				</div>
+				<div class="card">
+					<h3>Base JSON Central</h3>
+					<p>Uma fonte de verdade para preços, disponibilidade e materiais. Zero conflito de versão.</p>
+				</div>
+			</div>
+			<div class="panel" style="margin-top:22px;display:grid;gap:14px;">
+				<strong style="color:var(--text);">Diferencial decisivo</strong>
+				<p>HERO.IA não é chatbot improvisado. É motor de decisão assistida dentro do WhatsApp, com compliance implícita, logs e controle total do operador.</p>
+				<img src="img/funcionalidades.jpg" alt="Funcionalidades HERO.IA" style="border-radius:14px;border:1px solid var(--stroke);">
+			</div>
+		</section>
+
+		<section id="midia">
+			<h2>Video institucional e proposta executiva</h2>
+			<div class="media">
+				<div class="video-wrapper">
+					<iframe src="https://www.youtube-nocookie.com/embed/vaD617qQuGY?rel=0&modestbranding=1&playsinline=1" title="Video HERO.IA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+					<div class="video-fallback">
+						<strong>Se o vídeo não carregar, abra no YouTube.</strong>
+						<a href="https://youtu.be/vaD617qQuGY" target="_blank" rel="noopener">Assistir no YouTube</a>
+					</div>
+				</div>
+				<div class="panel pdf-card">
+					<div>
+						<h3>PDF Proposta Executiva</h3>
+						<p>Fluxo completo, benefícios por papel, integrações e políticas de governança para imobiliárias B2B.</p>
+						<div class="list">
+							<div class="list-item"><span class="badge">PDF</span><div>Proposta_Executiva_HEROIA.pdf</div></div>
+							<div class="list-item"><span class="badge">Uso</span><div>Ideal para comitês de decisão, diretores comerciais e tecnologia.</div></div>
+						</div>
+					</div>
+					<div style="display:grid;gap:10px;">
+						<a class="btn" href="Proposta_Executiva_HEROIA.pdf" target="_blank" rel="noopener">Baixar proposta</a>
+						<button class="btn" type="button" id="openProposal">Ver proposta (HTML)</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="slides">
+			<h2>Galeria de slides (9)</h2>
+			<p>Visualize a operação, telas e mensagens estratégicas do HERO.IA para imobiliárias.</p>
+			<div class="gallery">
+				<figure data-full="img/hero_briefing.jpg">
+					<img src="img/hero_briefing.jpg" alt="Briefing comercial">
+					<figcaption>Briefing comercial estruturado</figcaption>
+				</figure>
+				<figure data-full="img/arquitetura.jpg">
+					<img src="img/arquitetura.jpg" alt="Arquitetura HERO.IA">
+					<figcaption>Arquitetura e integrações</figcaption>
+				</figure>
+				<figure data-full="img/funcionalidades.jpg">
+					<img src="img/funcionalidades.jpg" alt="Funcionalidades HERO.IA">
+					<figcaption>Funcionalidades estratégicas</figcaption>
+				</figure>
+				<figure data-full="img/6telas.jpg">
+					<img src="img/6telas.jpg" alt="Conjunto de telas HERO.IA">
+					<figcaption>Conjunto de telas operacionais</figcaption>
+				</figure>
+				<figure data-full="img/principal.png">
+					<img src="img/principal.png" alt="Painel principal HERO.IA">
+					<figcaption>Painel principal do HERO.IA</figcaption>
+				</figure>
+				<figure data-full="img/disparador1.jpg">
+					<img src="img/disparador1.jpg" alt="Disparador estrategico 1">
+					<figcaption>Disparador estratégico - exemplo 1</figcaption>
+				</figure>
+				<figure data-full="img/disparador2.jpg">
+					<img src="img/disparador2.jpg" alt="Disparador estrategico 2">
+					<figcaption>Disparador estratégico - exemplo 2</figcaption>
+				</figure>
+				<figure data-video="https://www.youtube-nocookie.com/embed/vaD617qQuGY?rel=0&modestbranding=1&playsinline=1">
+					<img src="img/heroia.jpg" alt="Visao geral HERO.IA">
+					<figcaption>Visao geral da plataforma</figcaption>
+				</figure>
+			</div>
+		</section>
+
+		<section class="cta">
+			<h2>HERO.IA nao substitui o corretor. Ele amplifica a inteligencia da imobiliaria.</h2>
+			<p>Governanca, rapidez e padronizacao com controle humano total. Menos tempo digitando, mais tempo fechando negocios.</p>
+			<div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+				<a class="btn" href="https://wa.me/5521985653880?text=Quero%20agendar%20uma%20demonstra%C3%A7%C3%A3o%20do%20HERO.IA">Agendar demonstracao</a>
+				<a class="btn" href="https://hero.ia.br" target="_blank" rel="noopener">Conhecer HERO.IA</a>
+			</div>
+		</section>
+	</main>
+
+	<div class="lightbox" id="imageLightbox" aria-hidden="true">
+		<button class="lightbox-close" type="button" aria-label="Fechar visualizacao">&times;</button>
+		<img id="lightboxImage" alt="Visualizacao do slide HERO.IA">
+	</div>
+
+	<div class="lightbox" id="videoLightbox" aria-hidden="true">
+		<button class="lightbox-close" type="button" aria-label="Fechar video">&times;</button>
+		<div class="video-shell">
+			<iframe id="lightboxVideo" src="" title="Video HERO.IA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+		</div>
+	</div>
+
+	<footer>
+		HERO.IA © 2026 · Governanca comercial com IA assistiva · https://hero.ia.br
+	</footer>
+
+	<script>
+	(function(){
+		const figures=[...document.querySelectorAll('.gallery figure')];
+		const imageBox=document.getElementById('imageLightbox');
+		const videoBox=document.getElementById('videoLightbox');
+		const imgEl=document.getElementById('lightboxImage');
+		const videoEl=document.getElementById('lightboxVideo');
+			const heroWrapper=document.querySelector('.video-wrapper');
+			const heroIframe=heroWrapper?.querySelector('iframe');
+			const heroFallback=heroWrapper?.querySelector('.video-fallback');
+
+		const openImage=(src)=>{
+			imgEl.src=src;
+			imageBox.classList.add('active');
+			imageBox.setAttribute('aria-hidden','false');
+		};
+		const closeImage=()=>{
+			imageBox.classList.remove('active');
+			imageBox.setAttribute('aria-hidden','true');
+			imgEl.src='';
+		};
+		const openVideo=(src)=>{
+			videoEl.src=src;
+			videoBox.classList.add('active');
+			videoBox.setAttribute('aria-hidden','false');
+		};
+		const closeVideo=()=>{
+			videoBox.classList.remove('active');
+			videoBox.setAttribute('aria-hidden','true');
+			videoEl.src='';
+		};
+
+		figures.forEach((fig)=>{
+			const full=fig.dataset.full;
+			const video=fig.dataset.video;
+			if(full){
+				fig.style.cursor='zoom-in';
+				fig.addEventListener('click',()=>openImage(full));
+			}
+			if(video){
+				fig.style.cursor='pointer';
+				fig.addEventListener('click',()=>openVideo(video));
+			}
+		});
+
+		if(heroIframe && heroFallback && heroWrapper){
+			heroIframe.addEventListener('error',()=>{
+				heroWrapper.classList.add('error');
+			});
+			heroIframe.addEventListener('load',()=>{
+				heroWrapper.classList.remove('error');
+			});
+		}
+
+		imageBox.addEventListener('click',(ev)=>{
+			if(ev.target===imageBox) closeImage();
+		});
+		videoBox.addEventListener('click',(ev)=>{
+			if(ev.target===videoBox) closeVideo();
+		});
+		imageBox.querySelector('.lightbox-close').addEventListener('click',closeImage);
+		videoBox.querySelector('.lightbox-close').addEventListener('click',closeVideo);
+		videoEl.addEventListener('error',()=>{
+			closeVideo();
+			window.open('https://youtu.be/vaD617qQuGY','_blank');
+		});
+		const proposalBtn=document.getElementById('openProposal');
+		if(proposalBtn){
+			proposalBtn.addEventListener('click',()=>{
+				window.open('Proposta_Executiva_HEROIA.html','proposal','width=1200,height=800,noopener');
+			});
+		}
+		document.addEventListener('keydown',(ev)=>{
+			if(ev.key==='Escape'){
+				closeImage();
+				closeVideo();
+			}
+		});
+	})();
+	</script>
+</body>
+</html>
